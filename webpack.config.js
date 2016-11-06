@@ -29,6 +29,7 @@ module.exports = {
     ],
     alias: {
       applicationStyles: 'app/styles/app.scss',
+      actions: 'app/actions/actions.jsx',
       jQuery: 'node_modules/jquery/dist/jquery.min.js'
     },
     extensions: ['','.js','.jsx']
