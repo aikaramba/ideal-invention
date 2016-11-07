@@ -1,7 +1,7 @@
 {
   "name": "react-todo-app",
   "version": "1.0.0",
-  "description": "My react boilerplate",
+  "description": "React-redux app that shows a list of \"To-do\" items and saves them to localstorage",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
