@@ -35,7 +35,9 @@ describe('TodoList', () => {
       }
     ];
     var store = configure({
-      todos
+      todos,
+      showCompleted: true,
+      searchText: ''
     });
     var provider = TestUtils.renderIntoDocument(
       <Provider store={store}>
