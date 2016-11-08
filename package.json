@@ -4,8 +4,9 @@
   "description": "React-redux app that shows a list of \"To-do\" items and saves them to localstorage",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "karma start"
+    "start": "npm run build && node app.js",
+    "test": "NODE_ENV=test karma start",
+    "build": "webpack"
   },
   "author": "Aika",
   "license": "MIT",
@@ -15,9 +16,7 @@
     "firebase": "^3.5.3",
     "react": "*",
     "react-dom": "*",
-    "react-router": "^2.0.0"
-  },
-  "devDependencies": {
+    "react-router": "^2.0.0",
     "babel-core": "*",
     "babel-loader": "*",
     "babel-preset-es2015": "*",
@@ -28,15 +27,6 @@
     "expect": "^1.20.2",
     "foundation-sites": "^6.2.4",
     "jquery": "^2.2.4",
-    "karma": "^0.13.22",
-    "karma-chrome-launcher": "^0.2.2",
-    "karma-firefox-launcher": "^1.0.0",
-    "karma-mocha": "^0.2.2",
-    "karma-mocha-reporter": "^2.0.0",
-    "karma-sourcemap-loader": "^0.3.7",
-    "karma-webpack": "^1.7.0",
-    "mocha": "^2.4.5",
-    "moment": "^2.15.2",
     "node-sass": "^3.10.1",
     "node-uuid": "^1.4.7",
     "react-addons-test-utils": "^15.3.2",
@@ -48,5 +38,16 @@
     "script-loader": "^0.7.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.12.13"
+  },
+  "devDependencies": {
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-firefox-launcher": "^1.0.0",
+    "karma-mocha": "^0.2.2",
+    "karma-mocha-reporter": "^2.0.0",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^1.7.0",
+    "mocha": "^2.4.5",
+    "moment": "^2.15.2"
   }
 }
