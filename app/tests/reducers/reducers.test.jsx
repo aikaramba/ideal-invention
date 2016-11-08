@@ -104,6 +104,30 @@ describe('Reducers', () => {
       expect(res.length).toEqual(2);
       expect(res[0]).toEqual(todos[0]);
     });
+    it('should wipe existing todos on logout', () => {
+      var todos = [
+        {
+          id: 11,
+          text: 'some Text 2 CHECK',
+          completed: false,
+          completedAt: undefined,
+          createdAt: 2131
+        },
+        {
+          id: 23,
+          text: 'Bang bang',
+          completed: true,
+          completedAt: 123123,
+          createdAt: 123
+        }
+      ];
+      var action = {
+        type: 'LOGOUT'
+      };
+      var res = reducers.todosReducer(df(todos), df(action));
+
+      expect(res.length).toEqual(0);
+    });
   });
 
   describe('authReducer', () => {
