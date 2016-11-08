@@ -12,7 +12,7 @@ describe('Actions', () => {
   it('sould exist', () => {
     expect(actions).toExist();
   });
-  it('should generate search text action', () => {
+  it('should generate SET_SEARCH_TEXT action', () => {
     var action = {
       type: 'SET_SEARCH_TEXT',
       searchText: 'Some search text'
@@ -21,7 +21,7 @@ describe('Actions', () => {
 
     expect(res).toEqual(action);
   });
-  it('should generate add todo action', () => {
+  it('should generate ADD_TODO action', () => {
     var action = {
       type: 'ADD_TODO',
       todo: {
@@ -51,7 +51,7 @@ describe('Actions', () => {
     }).catch(done);
   });
 
-  it('should generate add todos action', () => {
+  it('should generate ADD_TODOS action', () => {
     var todos = [
       {
         id: 11,
@@ -76,7 +76,7 @@ describe('Actions', () => {
 
     expect(res).toEqual(action);
   });
-  it('should generate toggle show completed action', () => {
+  it('should generate TOGGLE_SHOW_COMPLETED action', () => {
     var action = {
       type: 'TOGGLE_SHOW_COMPLETED'
     };
@@ -137,7 +137,7 @@ describe('Actions', () => {
         done();
       }, done)
     });
-
+/*
     it('should get back one preset todo on startAddTodos action', (done) => {
       const store = createMockStore({});
       const action = actions.startAddTodos();
@@ -152,6 +152,24 @@ describe('Actions', () => {
         done();
       }, done);
     });
+*/
+  });
 
+  it('should generate LOGIN action', () => {
+    var action = {
+      type: 'LOGIN',
+      uid: '123123asdasd'
+    };
+    var res = actions.login(action.uid);
+
+    expect(res).toEqual(action);
+  });
+  it('should generate LOGOUT action', () => {
+    var action = {
+      type: 'LOGOUT'
+    };
+    var res = actions.logout();
+
+    expect(res).toEqual(action);
   });
 });

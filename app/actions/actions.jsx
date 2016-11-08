@@ -1,6 +1,19 @@
 import firebase, {firebaseRef, githubProvider} from 'app/firebase/';
 import moment from 'moment';
 
+export var login = (uid) => {
+  return {
+    type: 'LOGIN',
+    uid
+  };
+};
+
+export var logout = () => {
+  return {
+    type: 'LOGOUT'
+  }
+};
+
 export var setSearchText = (searchText) => {
   return {
     type: 'SET_SEARCH_TEXT',
@@ -100,8 +113,10 @@ export var startToggleTodo = (id, completed) => {
 export var startLogin = () => {
   return (dispatch, getState) => {
     return firebase.auth().signInWithPopup(githubProvider).then((result) => {
+      //dispatch(login(result.user.uid));
       console.log('Auth worked!', result);
     }, (error) => {
+    //  dispatch(logout());
       console.log('Unable to auth!', error);
     });
   };
@@ -109,6 +124,7 @@ export var startLogin = () => {
 export var startLogout = () => {
   return (dispatch, getState) => {
     return firebase.auth().signOut().then(() => {
+    //  dispatch(logout());
       console.log('Logged out!');
     });
   };
