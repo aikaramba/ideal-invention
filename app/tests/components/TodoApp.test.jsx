@@ -9,7 +9,7 @@ var uuid = require('node-uuid');
 var moment = require('moment');
 
 var configureStore = require('configureStore');
-var TodoApp = require('TodoApp');
+import {TodoApp} from 'TodoApp';
 import TodoList from 'TodoList';
 
 describe('TodoApp', () => {
