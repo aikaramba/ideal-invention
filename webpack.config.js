@@ -40,6 +40,7 @@ module.exports = {
       actions: 'app/actions/actions.jsx',
       reducers: 'app/reducers/reducers.jsx',
       configureStore: 'app/store/configureStore.jsx',
+      firebaseConfig: 'private/firebaseConfig.js',
       jQuery: 'node_modules/jquery/dist/jquery.min.js'
     },
     extensions: ['','.js','.jsx']
