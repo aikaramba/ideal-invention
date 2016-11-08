@@ -99,14 +99,19 @@ describe('Actions', () => {
     var testTodoRef;
 
     beforeEach((done) => {
-      testTodoRef = firebaseRef.child('todos').push();
+      var todosRef = firebaseRef.child('todos');
 
-      testTodoRef.set({
-        test: 'Something todo',
-        completed: false,
-        createdAt: 9278971894
-      }).then(()=> done());
+      todosRef.remove().then(() => {
+        testTodoRef = firebaseRef.child('todos').push();
 
+        return  testTodoRef.set({
+          test: 'Something todo',
+          completed: false,
+          createdAt: 9278971894
+        });
+      })
+      .then(()=> done())
+      .catch(done);
     });
 
     afterEach((done) => {
@@ -132,5 +137,21 @@ describe('Actions', () => {
         done();
       }, done)
     });
+
+    it('should get back one preset todo on startAddTodos action', (done) => {
+      const store = createMockStore({});
+      const action = actions.startAddTodos();
+
+      store.dispatch(action).then(() => {
+        const mockActions = store.getActions();
+        const mockState = store.getState();
+
+        expect(mockActions[0].type).toEqual('ADD_TODOS');
+        expect(mockActions[0].todos.length).toEqual(1);
+        expect(mockActions[0].todos[0].text).toEqual('Something todo');
+        done();
+      }, done);
+    });
+
   });
 });

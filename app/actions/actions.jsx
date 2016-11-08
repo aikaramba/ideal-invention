@@ -15,6 +15,32 @@ export var addTodo = (todo) => {
   };
 };
 
+export var startAddTodos = () => {
+  return (dispatch, getState) => {
+    var todosRef = firebaseRef.child('todos');
+
+    return todosRef.once('value').then((snapshot) => {
+      var todos = snapshot.val() || {};
+      var newTodos = [];
+
+      Object.keys(todos).forEach((key) => {
+        newTodos.push({
+          id: key,
+          ...todos[key]
+        })
+      });
+      // for(var key of Object.keys(todos)){
+      //   newTodos.push({
+      //     ...todos[key],
+      //     id: key
+      //   });
+      // };
+      dispatch(addTodos(newTodos));
+    });
+  };
+};
+
+
 export var startAddTodo = (text) => {
   return (dispatch, getState) => {
     var todo = {
@@ -24,14 +50,15 @@ export var startAddTodo = (text) => {
       completedAt: null
     };
     var todoRef = firebaseRef.child('todos').push(todo);
-    return todoRef.then(()=>{
-      dispatch(addTodo({
-        ...todo,
-        id: todoRef.key
-      }))
-    },()=>{
 
-    })
+      return todoRef.then(()=>{
+        dispatch(addTodo({
+          ...todo,
+          id: todoRef.key
+        }))
+      },()=>{
+
+      });
   };
 };
 
