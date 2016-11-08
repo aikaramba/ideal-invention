@@ -110,12 +110,12 @@ describe('Actions', () => {
           createdAt: 9278971894
         });
       })
-      .then(()=> done())
+      .then(() => {done()})
       .catch(done);
     });
 
     afterEach((done) => {
-      testTodoRef.remove().then(() => done());
+      testTodoRef.remove().then(() =>{ done()});
     });
 
     it('should toggle todo and dispatch UPDATE_TODO action', (done) => {

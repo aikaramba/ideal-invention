@@ -1,6 +1,5 @@
 node_modules/
 npm-debug.log
-examples/
 playground/
 public/bundle.js
-private/
+config/
