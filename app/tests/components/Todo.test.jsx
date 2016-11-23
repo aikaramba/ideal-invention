@@ -1,10 +1,10 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var expect = require('expect');
-var $ = require('jQuery');
-var TestUtils = require('react-addons-test-utils');
+const React = require('react');
+const ReactDOM = require('react-dom');
+const expect = require('expect');
+const $ = require('jQuery');
+const TestUtils = require('react-addons-test-utils');
 
-var uuid = require('node-uuid');
+const uuid = require('node-uuid');
 
 
 import * as actions from 'actions';
@@ -15,17 +15,17 @@ describe('Todo', () => {
     expect(Todo).toExist();
   });
   it('should dispatch TOGGLE_TODO action on click', () =>{
-    var id = uuid();
-    var todoData = {
+    let id = uuid();
+    let todoData = {
       id: id,
       text: 'Write "todo.test.jsx" test ',
       completed: true
     };
-    var action = actions.startToggleTodo(todoData.id, !todoData.completed);
+    let action = actions.startToggleTodo(todoData.id, !todoData.completed);
 
-    var spy = expect.createSpy();
-    var todo = TestUtils.renderIntoDocument(<Todo {...todoData} dispatch={spy}/>);
-    var $el = $(ReactDOM.findDOMNode(todo));
+    let spy = expect.createSpy();
+    let todo = TestUtils.renderIntoDocument(<Todo {...todoData} dispatch={spy}/>);
+    let $el = $(ReactDOM.findDOMNode(todo));
 
     TestUtils.Simulate.click($el[0]);
 

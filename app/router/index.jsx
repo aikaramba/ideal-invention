@@ -1,17 +1,17 @@
 import React from 'react';
-import {Route, Router, IndexRoute, hashHistory} from 'react-router';
+import {Route, Router, IndexRoute, hashHistory, browserHistory} from 'react-router';
 
 import TodoApp from 'TodoApp';
 import Login from 'Login';
 import firebase from 'app/firebase/';
 
-var requireLogin = (nextState, replace, next) => {
+let requireLogin = (nextState, replace, next) => {
   if (!firebase.auth().currentUser) {
     replace('/');
   }
   next();
 };
-var redirectIfLoggedIn = (nextState, replace, next) => {
+let redirectIfLoggedIn = (nextState, replace, next) => {
   if (firebase.auth().currentUser) {
     replace('/todos');
   }

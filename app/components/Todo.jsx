@@ -1,19 +1,20 @@
-var React = require('react');
-var moment = require('moment');
-var {connect} = require('react-redux');
-var actions = require('actions');
+import React from 'react';
+import {connect} from 'react-redux';
+import * as actions from 'actions';
 
-export var Todo = React.createClass({
-  render: function(){
-    var {id, text, completed, createdAt, completedAt, dispatch} = this.props;
-    var todoClassName = 'todo' + (completed ? ' todo-completed' : '' );
-    var renderDate = () => {
-       var message = completed ? 'Completed ' : 'Created ';
-       var timestamp = completed ? completedAt : createdAt;
-       var time = moment.unix(timestamp).format('HH:mm - D.MM.YYYY');
+const moment = require('moment');
+
+export class Todo extends React.Component {
+  render () {
+    let {id, text, completed, createdAt, completedAt, dispatch} = this.props;
+    let todoClassName = 'todo' + (completed ? ' todo-completed' : '' );
+    let renderDate = () => {
+       let message = completed ? 'Completed ' : 'Created ';
+       let timestamp = completed ? completedAt : createdAt;
+       let time = moment.unix(timestamp).format('HH:mm - D.MM.YYYY');
        return message + time;
     };
-    return(
+    return (
       <div className={todoClassName} onClick={()=>{
           dispatch(actions.startToggleTodo(id, !completed));
         }}>
@@ -27,6 +28,6 @@ export var Todo = React.createClass({
       </div>
     );
   }
-});
+}
 
 export default connect()(Todo);

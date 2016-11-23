@@ -1,13 +1,13 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var {Provider} = require('react-redux');
-var {hashHistory} = require('react-router');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
+import {hashHistory} from 'react-router';
 
 // react components
 import router from 'app/router/';
 // redux
-var actions = require('actions');
-var store = require('configureStore').configure();
+import * as actions from 'actions';
+const store = require('configureStore').configure();
 import firebase from 'app/firebase/';
 
 firebase.auth().onAuthStateChanged((user) => {

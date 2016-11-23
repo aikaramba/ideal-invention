@@ -1,9 +1,8 @@
-var $ = require('jquery');
+const $ = require('jquery');
 
 module.exports = {
   filterTodos: function(todos, showCompleted, searchText){
-    var filteredTodos = todos;
-
+    let filteredTodos = todos;
 
     // filter by showcompleted
     filteredTodos = filteredTodos.filter((todo) => {
@@ -12,7 +11,8 @@ module.exports = {
     // filter by searchText
     if(searchText.length > 0)
     filteredTodos = filteredTodos.filter((todo) => {
-      return todo.text.toLowerCase().includes(searchText.toLowerCase());
+      let text = todo.text.toLowerCase();
+      return text.includes(searchText.toLowerCase());
     });
     // sort todos with non-completed first
     filteredTodos.sort((a, b) => {

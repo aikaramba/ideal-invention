@@ -1,6 +1,6 @@
-var expect = require('expect');
-var TodoAPI = require('TodoAPI');
-var uuid = require('node-uuid');
+const expect = require('expect');
+const TodoAPI = require('TodoAPI');
+const uuid = require('node-uuid');
 
 describe('TodoAPI', () => {
   beforeEach(() => {
@@ -11,7 +11,7 @@ describe('TodoAPI', () => {
   });
 
   describe('filterTodos', () => {
-    var todos = [{
+    let todos = [{
       id: uuid(),
       text: 'Some text here',
       completed: true
@@ -26,26 +26,26 @@ describe('TodoAPI', () => {
     }];
 
     it('should return all items if showCompleted is true', () => {
-      var filteredTodos = TodoAPI.filterTodos(todos, true, '');
+      let filteredTodos = TodoAPI.filterTodos(todos, true, '');
       expect(filteredTodos.length).toBe(3);
     });
 
     it('should return all items if showCompleted is false', () => {
-      var filteredTodos = TodoAPI.filterTodos(todos, false, '');
+      let filteredTodos = TodoAPI.filterTodos(todos, false, '');
       expect(filteredTodos.length).toBe(1);
     });
 
     it('should sort by completed status', () => {
-      var filteredTodos = TodoAPI.filterTodos(todos, true, '');
+      let filteredTodos = TodoAPI.filterTodos(todos, true, '');
       expect(filteredTodos[0].completed).toBe(false);
     });
 
     it('should return all items if searchText is empty', () => {
-      var filteredTodos = TodoAPI.filterTodos(todos, true, '');
+      let filteredTodos = TodoAPI.filterTodos(todos, true, '');
       expect(filteredTodos.length).toBe(3);
     });
     it('should return only matched items if searchText is entered', () => {
-      var filteredTodos = TodoAPI.filterTodos(todos, true, 'sOmE Text he');
+      let filteredTodos = TodoAPI.filterTodos(todos, true, 'sOmE Text he');
       expect(filteredTodos.length).toBe(2);
     });
 

@@ -1,9 +1,9 @@
-var expect = require('expect');
-var df = require('deep-freeze-strict');
-var moment = require('moment');
-var uuid = require('node-uuid');
+const expect = require('expect');
+const df = require('deep-freeze-strict');
+const moment = require('moment');
+const uuid = require('node-uuid');
 
-var reducers = require('reducers');
+const reducers = require('reducers');
 
 describe('Reducers', () => {
   it('should exist', () => {
@@ -11,26 +11,26 @@ describe('Reducers', () => {
   });
   describe('searchTextReducer', () => {
     it('should set searchText', () => {
-      var action = {
+      let action = {
         type: 'SET_SEARCH_TEXT',
         searchText: 'test Something 42'
       };
-      var res = reducers.searchTextReducer(df(''), df(action));
+      let res = reducers.searchTextReducer(df(''), df(action));
 
       expect(res).toEqual(action.searchText);
     });
     it('should toggle showCompleted', () => {
-      var action = {
+      let action = {
         type: 'TOGGLE_SHOW_COMPLETED'
       };
-      var res = reducers.showCompletedReducer(df(false), df(action));
+      let res = reducers.showCompletedReducer(df(false), df(action));
 
       expect(res).toEqual(true);
     });
   });
   describe('todosReducer', () => {
     it('should add new todo', () => {
-      var action = {
+      let action = {
         type: 'ADD_TODO',
         todo: {
           id: '82734892sdf',
@@ -39,13 +39,13 @@ describe('Reducers', () => {
           createdAt: 23784234
         }
       };
-      var res = reducers.todosReducer(df([]), df(action));
+      let res = reducers.todosReducer(df([]), df(action));
 
       expect(res.length).toEqual(1);
       expect(res[0]).toEqual(action.todo);
     });
     it('should update todo', () => {
-      var todos = [
+      let todos = [
         {
           id: uuid(),
           text: 'you can run around',
@@ -62,16 +62,16 @@ describe('Reducers', () => {
         }
       ];
 
-      var updates = {
+      let updates = {
         completed: false,
         completedAt: null
       };
-      var action = {
+      let action = {
         type: 'UPDATE_TODO',
         id: todos[0].id,
         updates
       };
-      var res = reducers.todosReducer(df(todos), df(action));
+      let res = reducers.todosReducer(df(todos), df(action));
 
       expect(res.length).toEqual(2);
       expect(res[0].completed).toEqual(updates.completed);
@@ -79,7 +79,7 @@ describe('Reducers', () => {
       expect(res[0].text).toEqual(todos[0].text);
     });
     it('should add existing todos', () => {
-      var todos = [
+      let todos = [
         {
           id: 11,
           text: 'some Text 2 CHECK',
@@ -95,17 +95,17 @@ describe('Reducers', () => {
           createdAt: 123
         }
       ];
-      var action = {
+      let action = {
         type: 'ADD_TODOS',
         todos
       };
-      var res = reducers.todosReducer(df([]), df(action));
+      let res = reducers.todosReducer(df([]), df(action));
 
       expect(res.length).toEqual(2);
       expect(res[0]).toEqual(todos[0]);
     });
     it('should wipe existing todos on logout', () => {
-      var todos = [
+      let todos = [
         {
           id: 11,
           text: 'some Text 2 CHECK',
@@ -121,10 +121,10 @@ describe('Reducers', () => {
           createdAt: 123
         }
       ];
-      var action = {
+      let action = {
         type: 'LOGOUT'
       };
-      var res = reducers.todosReducer(df(todos), df(action));
+      let res = reducers.todosReducer(df(todos), df(action));
 
       expect(res.length).toEqual(0);
     });
@@ -132,22 +132,22 @@ describe('Reducers', () => {
 
   describe('authReducer', () => {
     it('should login', () => {
-      const action = {
+      let action = {
         type: 'LOGIN',
         uid: '123123asdasd'
       };
-      const res = reducers.authReducer(df({}), df(action));
+      let res = reducers.authReducer(df({}), df(action));
 
       expect(res.uid).toEqual(action.uid);
     });
     it('should logout', () => {
-      const authData = {
+      let authData = {
         uid: '78d2dhU'
       };
-      const action = {
+      let action = {
         type: 'LOGOUT'
       };
-      const res = reducers.authReducer(df(authData), df(action));
+      let res = reducers.authReducer(df(authData), df(action));
 
       expect(res.uid).toNotExist();
     });

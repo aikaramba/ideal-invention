@@ -1,14 +1,14 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var {Provider} = require('react-redux');
-var expect = require('expect');
-var $ = require('jQuery');
-var TestUtils = require('react-addons-test-utils');
+const React = require('react');
+const ReactDOM = require('react-dom');
+const {Provider} = require('react-redux');
+const expect = require('expect');
+const $ = require('jQuery');
+const TestUtils = require('react-addons-test-utils');
 
-var uuid = require('node-uuid');
-var moment = require('moment');
+const uuid = require('node-uuid');
+const moment = require('moment');
 
-var configureStore = require('configureStore');
+const configureStore = require('configureStore');
 import {TodoApp} from 'TodoApp';
 import TodoList from 'TodoList';
 
@@ -17,15 +17,15 @@ describe('TodoApp', () => {
     expect(TodoApp).toExist();
   });
   it('should render TodoList', () => {
-    var store = configureStore.configure();
-    var provider = TestUtils.renderIntoDocument(
+    let store = configureStore.configure();
+    let provider = TestUtils.renderIntoDocument(
       <Provider store={store}>
         <TodoApp/>
       </Provider>
     );
 
-    var todoApp = TestUtils.scryRenderedComponentsWithType(provider, TodoApp)[0];
-    var todoList = TestUtils.scryRenderedComponentsWithType(todoApp, TodoList);
+    let todoApp = TestUtils.scryRenderedComponentsWithType(provider, TodoApp)[0];
+    let todoList = TestUtils.scryRenderedComponentsWithType(todoApp, TodoList);
 
     expect(todoList.length).toEqual(1);
   });

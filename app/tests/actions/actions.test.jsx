@@ -1,28 +1,28 @@
-var expect = require('expect');
-var actions = require('actions');
-var uuid = require('node-uuid');
+const expect = require('expect');
+const actions = require('actions');
+const uuid = require('node-uuid');
 
 import firebase, {firebaseRef} from 'app/firebase/';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-var createMockStore = configureMockStore([thunk]);
+const createMockStore = configureMockStore([thunk]);
 
 describe('Actions', () => {
   it('sould exist', () => {
     expect(actions).toExist();
   });
   it('should generate SET_SEARCH_TEXT action', () => {
-    var action = {
+    let action = {
       type: 'SET_SEARCH_TEXT',
       searchText: 'Some search text'
     };
-    var res = actions.setSearchText(action.searchText);
+    let res = actions.setSearchText(action.searchText);
 
     expect(res).toEqual(action);
   });
   it('should generate ADD_TODO action', () => {
-    var action = {
+    let action = {
       type: 'ADD_TODO',
       todo: {
         test: 'some Text 2 CHECK',
@@ -30,15 +30,13 @@ describe('Actions', () => {
         createdAt: 0
       }
     };
-    var res = actions.addTodo(action.todo);
+    let res = actions.addTodo(action.todo);
 
     expect(res).toEqual(action);
   });
 
-
-
   it('should generate ADD_TODOS action', () => {
-    var todos = [
+    let todos = [
       {
         id: 11,
         text: 'some Text 2 CHECK',
@@ -54,40 +52,40 @@ describe('Actions', () => {
         createdAt: 123
       }
     ];
-    var action = {
+    let action = {
       type: 'ADD_TODOS',
       todos
     };
-    var res = actions.addTodos(todos);
+    let res = actions.addTodos(todos);
 
     expect(res).toEqual(action);
   });
   it('should generate TOGGLE_SHOW_COMPLETED action', () => {
-    var action = {
+    let action = {
       type: 'TOGGLE_SHOW_COMPLETED'
     };
-    var res = actions.toggleShowCompleted();
+    let res = actions.toggleShowCompleted();
 
     expect(res).toEqual(action);
   });
   it('should generate update todo action', () => {
-    var action = {
+    let action = {
       type: 'UPDATE_TODO',
       id: '123123',
       updates: {completed: false}
     };
-    var res = actions.updateTodo(action.id, action.updates);
+    let res = actions.updateTodo(action.id, action.updates);
 
     expect(res).toEqual(action);
   });
 
   describe('Tests with firebase todos', () => {
-    var testTodoRef;
-    var uid;
-    var todosRef;
+    let testTodoRef;
+    let uid;
+    let todosRef;
 
     beforeEach((done) => {
-      var credential = firebase.auth.GithubAuthProvider.credential(process.env.GITHUB_ACCESS_TOKEN);
+      let credential = firebase.auth.GithubAuthProvider.credential(process.env.GITHUB_ACCESS_TOKEN);
 
       firebase.auth().signInWithCredential(credential).then((user) => {
         uid = user.uid;
@@ -163,19 +161,19 @@ describe('Actions', () => {
   });
 
   it('should generate LOGIN action', () => {
-    var action = {
+    let action = {
       type: 'LOGIN',
       uid: '123123asdasd'
     };
-    var res = actions.login(action.uid);
+    let res = actions.login(action.uid);
 
     expect(res).toEqual(action);
   });
   it('should generate LOGOUT action', () => {
-    var action = {
+    let action = {
       type: 'LOGOUT'
     };
-    var res = actions.logout();
+    let res = actions.logout();
 
     expect(res).toEqual(action);
   });

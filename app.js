@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const favicon = require('serve-favicon');
+const path = require('path');
 
 const PORT = process.env.PORT || 3000;
 
@@ -10,7 +12,7 @@ app.use(function(req, res, next){
     next();
   }
 });
-
+app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(express.static('public'));
 
 app.listen(PORT, () => {
